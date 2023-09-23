@@ -38,6 +38,30 @@ void RemoveExistingPatchFiles(const char* path) {
     }
 }
 
+void CreateOriginalBackup(const char* path) {
+    namespace fs = std::filesystem;
+    
+    std::filesystem::path filePath = path;
+    if (fs::exists(filePath)) {
+        fs::path pathObj(filePath); // Create an instance of fs::path and initialize it with the filePath.
+        std::string fileName = pathObj.filename().string();
+        std::string fileLoc = pathObj.parent_path().string();
+
+        // if not already existing
+        if (!fs::exists(filePath + ".backup")) {
+            puts("Creating backup for: " + fileName);
+            std::string fileDest = fileLoc + "/" + fileName + ".backup";
+            
+            std::filesystem::copy_file(filePath, fileDest);
+        }
+    }
+}
+
+void Patcher::BackupFiles() {
+    CreateOriginalBackup("game/csgo/bin/win64/client.dll");
+    CreateOriginalBackup("game/csgo/bin/win64/server.dll");
+}
+
 void Patcher::CleanPatchFiles() {
     RemoveExistingPatchFiles("game/csgo/bin/win64/client.dll");
     RemoveExistingPatchFiles("game/csgo/bin/win64/server.dll");
