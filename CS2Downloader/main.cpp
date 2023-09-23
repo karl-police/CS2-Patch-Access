@@ -40,6 +40,8 @@ namespace Operations {
 
 	void patch_files() {
 		puts("Starting Patches...");
+		Patcher:CreateOriginalBackup();
+		
 		Patcher::PatchClient();
 		puts("Do you want to install the Patch for the server?");
 		puts("Press 'Y' for 'Yes' or 'N' for 'No' on your keyboard");
