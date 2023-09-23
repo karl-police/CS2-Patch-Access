@@ -31,5 +31,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: output
-        path: |
-              *.exe
+        path: CS2Downloader.exe
