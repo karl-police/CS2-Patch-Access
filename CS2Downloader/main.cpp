@@ -28,6 +28,15 @@ void patch_files() {
 }
 
 
+bool getArgFlag(char* strInput, char* strToFind) {
+	if (strcmp(strInput, strToFind) == 0) {
+		return true;
+	}
+
+	return false;
+}
+
+
 int main(int argc, char* argv[]) {
 	std::string wantsMovementPatch;
 
@@ -36,19 +45,17 @@ int main(int argc, char* argv[]) {
 		waitforinput();
 		Downloader::UpdateInstaller();
 	}
-
+	
 	for (int i = 1; i < argc; ++i) {
-		if (strcmp(argv[i], "disablemanifest") == 0) {
+		if ( getArgFlag(argv[i], "disablemanifest") ) {
 			Globals::usesNoManifests = true;
-			break;
 		}
-	}
-	for (int i = 1; i < argc; ++i) {
-		if (strcmp(argv[i], "patch_only") == 0) {
+
+		if ( getArgFlag(argv[i], "patch_only") ) {
 			b_PatchOnly = true;
-			break;
 		}
 	}
+
 	
 	puts("Daived: Thx for use my app");
 
