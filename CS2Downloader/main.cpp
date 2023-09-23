@@ -101,7 +101,11 @@ int main(int argc, char* argv[]) {
 		puts("Do GamePatches (mods), Y or N");
 		std::cin >> m_doGamePatches;
 
-		m_doGamePatches = std::tolower(m_doGamePatches);
+		// a pointer modifier
+		// this changes the string
+		for (char& c : m_doGamePatches) { 
+			c = std::tolower(c);
+		}
 
 		if (m_doGamePatches.find("y") != std::string::npos) {
 			Operations::GamePatches();
