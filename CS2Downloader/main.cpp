@@ -40,7 +40,7 @@ namespace Operations {
 
 	void patch_files() {
 		puts("Starting Patches...");
-		Patcher:CreateOriginalBackup();
+		Patcher:BackupFiles();
 		
 		Patcher::PatchClient();
 		puts("Do you want to install the Patch for the server?");
