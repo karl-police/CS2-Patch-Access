@@ -24,12 +24,11 @@ jobs:
 
 
     - name: Build
-      run: msbuild CS2Downloader.sln /t:Build /p:Configuration=Release
+      run: msbuild CS2Downloader /p:Configuration=Release
 
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
         name: output
-        path: | 
-              *
+        path: bin
