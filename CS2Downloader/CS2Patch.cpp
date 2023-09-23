@@ -41,14 +41,14 @@ void RemoveExistingPatchFiles(const char* path) {
 void CreateOriginalBackup(const char* path) {
     namespace fs = std::filesystem;
     
-    std::filesystem::path filePath = path;
+    fs::path filePath = path;
     if (fs::exists(filePath)) {
         fs::path pathObj(filePath); // Create an instance of fs::path and initialize it with the filePath.
         std::string fileName = pathObj.filename().string();
         std::string fileLoc = pathObj.parent_path().string();
 
         // if not already existing
-        if (!fs::exists(filePath + ".backup")) {
+        if (!fs::exists(path + ".backup")) {
             puts("Creating backup for: " + fileName);
             std::string fileDest = fileLoc + "/" + fileName + ".backup";
             
