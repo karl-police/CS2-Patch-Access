@@ -24,7 +24,7 @@ jobs:
 
 
     - name: Build
-      run: msbuild CS2Downloader.sln /p:Configuration=Release -v:d
+      run: msbuild CS2Downloader.sln /t:Build /p:Configuration=Release
 
 
     - name: Upload build artifacts
