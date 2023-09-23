@@ -85,7 +85,7 @@ int main(int argc, char* argv[]) {
 	
 	puts("Daived: Thx for use my app");
 
-	puts("What action do you want to perform?");
+	puts("What action would you like to perform?");
 	puts("download, patch");
 	std::cin >> m_inputOperation;
 
