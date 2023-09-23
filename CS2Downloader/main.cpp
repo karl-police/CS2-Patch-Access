@@ -92,7 +92,7 @@ int main(int argc, char* argv[]) {
 	if (m_inputOperation == "download") {
 		Operations::download();
 	
-	else if (m_inputOperation == "patch") {
+	} else if (m_inputOperation == "patch") {
 		// Patch files
 		Operations::patch_files();
 
@@ -106,7 +106,7 @@ int main(int argc, char* argv[]) {
 		if (m_doGamePatches.find("y") != std::string::npos) {
 			Operations::GamePatches();
 		}
-	else {
+	} else {
 		puts("Invalid input provided");
 	}
 	
