@@ -9,6 +9,9 @@
 
 bool b_PatchOnly = false;
 
+std::string wantsMovementPatch;
+
+
 void patch_files() {
 	puts("Starting Patches...");
 	Patcher::PatchClient();
@@ -38,8 +41,6 @@ bool getArgFlag(const char* strInput, const char* strToFind) {
 
 
 int main(int argc, char* argv[]) {
-	std::string wantsMovementPatch;
-
 	if (Downloader::needsUpdate()) {
 		puts("update required, press enter to download new update.");
 		waitforinput();
