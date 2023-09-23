@@ -7,28 +7,9 @@
 #include "downloader.hpp"
 #include "CS2Patch.hpp"
 
-int main(int argc, char* argv[]) {
-	std::string wantsMovementPatch;
+const b_PatchOnly = false;
 
-	if (Downloader::needsUpdate()) {
-		puts("update required, press enter to download new update.");
-		waitforinput();
-		Downloader::UpdateInstaller();
-	}
-
-	for (int i = 1; i < argc; ++i) {
-		if (strcmp(argv[i], "disablemanifest") == 0) {
-			Globals::usesNoManifests = true;
-			break;
-		}
-	}
-	puts("Daived: Thx for use my app , Preparing Download...");
-	Downloader::PrepareDownload();
-	puts("Prepared Download!");
-	Patcher::CleanPatchFiles();
-	puts("Starting Download...");
-	Downloader::DownloadCS2();
-	puts("Finished Download!.");
+void patch_files() {
 	puts("Starting Patches...");
 	Patcher::PatchClient();
 	puts("Do you want to install the Patch?");
@@ -44,6 +25,47 @@ int main(int argc, char* argv[]) {
 	}
 
 	puts("Finished Patches!");
+}
+
+
+int main(int argc, char* argv[]) {
+	std::string wantsMovementPatch;
+
+	if (Downloader::needsUpdate()) {
+		puts("update required, press enter to download new update.");
+		waitforinput();
+		Downloader::UpdateInstaller();
+	}
+
+	for (int i = 1; i < argc; ++i) {
+		if (strcmp(argv[i], "disablemanifest") == 0) {
+			Globals::usesNoManifests = true;
+			break;
+		}
+	}
+	for (int i = 1; i < argc; ++i) {
+		if (strcmp(argv[i], "patch_only") == 0) {
+			b_PatchOnly = true;
+			break;
+		}
+	}
+	
+	puts("Daived: Thx for use my app");
+
+	if (b_PatchOnly == false) {
+		puts("Preparing Download..");
+		Downloader::PrepareDownload();
+		puts("Prepared Download!");
+		
+		Patcher::CleanPatchFiles();
+		puts("Starting Download...");
+		Downloader::DownloadCS2();
+		puts("Finished Download!.");
+	}
+
+	// Patch files
+	patch_files();
+	
 	puts("Starting GamePatches...");
 	puts("This can take a long time...");
 	Downloader::DownloadMods();
