@@ -24,11 +24,11 @@ jobs:
 
 
     - name: Build
-      run: msbuild CS2Downloader.sln /p:Configuration=Release /p:Platform=x64
+      run: msbuild CS2Downloader.sln /p:Configuration=Release
 
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
         name: output
-        path: Release
+        path: build
