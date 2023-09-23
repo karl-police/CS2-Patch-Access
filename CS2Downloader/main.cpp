@@ -28,7 +28,7 @@ void patch_files() {
 }
 
 
-bool getArgFlag(char* strInput, char* strToFind) {
+bool getArgFlag(const char* strInput, const char* strToFind) {
 	if (strcmp(strInput, strToFind) == 0) {
 		return true;
 	}
