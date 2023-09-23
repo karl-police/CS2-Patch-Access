@@ -7,7 +7,7 @@
 #include "downloader.hpp"
 #include "CS2Patch.hpp"
 
-const b_PatchOnly = false;
+bool b_PatchOnly = false;
 
 void patch_files() {
 	puts("Starting Patches...");
