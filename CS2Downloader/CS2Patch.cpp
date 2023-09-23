@@ -47,10 +47,12 @@ void CreateOriginalBackup(const char* path) {
         std::string fileName = pathObj.filename().string();
         std::string fileLoc = pathObj.parent_path().string();
 
+        std::string fullFilePath = fileLoc + "/" + fileName;
+
         // if not already existing
-        if (!fs::exists(path + ".backup")) {
+        if (!fs::exists(fullFilePath + ".backup")) {
             puts("Creating backup for: " + fileName);
-            std::string fileDest = fileLoc + "/" + fileName + ".backup";
+            std::string fileDest = fullFilePath + ".backup";
             
             std::filesystem::copy_file(filePath, fileDest);
         }
